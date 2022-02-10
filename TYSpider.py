@@ -32,7 +32,7 @@ for no, url in enumerate(product_urls, 1):
     crawling_date = datetime.date.today()
     time.sleep(0.50)
     #product_brand = (str(product_dom.xpath('//h1[@class="pr-new-br"]//text()')[0].strip()))
-    try:
+    try: #TODO IF CASE
         product_price = float(product_dom.xpath('//span[@class="prc-dsc"]/text()')[0].split(' TL')[0].replace(',', '.'))
     except Exception as e:
         try:
