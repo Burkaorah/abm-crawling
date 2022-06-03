@@ -8,24 +8,25 @@ import time
 
 
 def job():
-    cnx = mysql.connector.connect(user='u0528528_userABM', password='TNdp86X7KLut93B', host='94.73.147.224',
-                                  database='u0528528_ABMGP')
-    cursor = cnx.cursor()
-    cursor.execute("Select link_name from links")
-    myresult = cursor.fetchall()
+    # cnx = mysql.connector.connect(user='u0528528_userABM', password='TNdp86X7KLut93B', host='94.73.147.224',
+    #                               database='u0528528_ABMGP')
+    # cursor = cnx.cursor()
+    # cursor.execute("Select link_name from links")
+    # myresult = cursor.fetchall()
 
-    urls = []
-    for i in myresult:
-        urls2 = (', '.join(str(x) for x in i))
-        urls += [
-            urls2
-        ]
-    for url in urls:
-        print('SENDING_REQUEST::', url)
+    urls = ['https://www.trendyol.com/kadin-elbise-x-g1-c56']
+    # myresult = ['https://www.trendyol.com/activex-banyo--dus-urunleri-x-b107866-c103107']
 
-        query = (
-            "INSERT INTO products (product_title, product_url, crawling_date, product_brand, product_img, retailer_name, product_id, product_availability, product_price, product_price_2, product_position, product_category, product_subcategory) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
-
+    # for i in myresult:
+    #     urls2 = (', '.join(str(x) for x in i))
+    #     urls += [
+    #         urls2
+    #     ]
+    for i in urls:
+        print('URL::', i)
+        url = i
+        # query = (
+            # "INSERT INTO products (product_title, product_url, crawling_date, product_brand, product_img, retailer_name, product_id, product_availability, product_price, product_price_2, product_position, product_category, product_subcategory) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
         header = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.15 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36',
             'sec-ch-ua-platform': 'macOS',
@@ -97,12 +98,13 @@ def job():
             if product_id is None or product_title is None or product_image_url is None or merchant is None or product_url is None:
                 print('UNSUCCESSFUL_PRODUCT!!!!!!')
             else:
-                cursor.execute(query, (
-                product_title, product_url, crawling_date, product_brand, product_image_url, retailer_name, product_id,
-                product_availability, product_price, product_price_2, position, product_category, product_subcategory))
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+                print('batuu')
+    #             cursor.execute(query, (
+    #             product_title, product_url, crawling_date, product_brand, product_image_url, retailer_name, product_id,
+    #             product_availability, product_price, product_price_2, position, product_category, product_subcategory))
+    # cnx.commit()
+    # cursor.close()
+    # cnx.close()
 
 
 job()
